@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/zzpdavid2/Documents/GitHub/csci-221/hw1/find_divisors'
+relocations:     []
+...
