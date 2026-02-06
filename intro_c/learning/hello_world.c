@@ -1,22 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "array.h"
+#define ARRAY_SIZE 2026
 
-int main (int argc, char *argv[]) {
+#define DEBUG 0
+
+int main (void) {
     //-Werror does not like unused parameters
-    (void)argc;
-    (void)argv;
     
-    printf("Hello, World!");
+    printf("Hello, World!\n");
 
-    u_int64_t arr[2026];
-    size_t arr_size = 2026;
+    int32_t arr[ARRAY_SIZE];
 
-    for (size_t i = 0; i < arr_size; i++)
-    {
-        arr[i] = 0;
-    }
-    
+    initalize_array(arr, ARRAY_SIZE, 0);
+
+    // Tests
+    #if DEBUG == 1
+    printf("The first element of the array is: %d\n", arr[0]);
+    printf("The last element of the array is: %d\n", arr[ARRAY_SIZE - 1]);
+    // printf("This value should be out of bounds: %d\n", arr[ARRAY_SIZE]); // This is undefined behavior, but we want to see what happens
+    #endif
 
     return 0;
 }
