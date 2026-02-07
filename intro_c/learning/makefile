@@ -7,7 +7,7 @@ test : hello_world roster_test
 	./roster_test
 
 #hello world
-hello_world : hello_world.c array.o
+hello_world : hello_world.c $(objects)
 	gcc hello_world.c -o hello_world $(objects) $(flags)
 
 array.o : array.c array.h
