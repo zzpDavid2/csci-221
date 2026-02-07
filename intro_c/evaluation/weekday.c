@@ -4,32 +4,41 @@
 #define DEBUG 1
 
 char* weekday(char* charecters, enum day numerical) {
+    const char* day_str = NULL;
     
     switch (numerical) {
         case SUNDAY:
-            charecters = "SUNDAY";
+            day_str = "SUNDAY";
             break;
         case MONDAY:
-            charecters = "MONDAY";
+            day_str = "MONDAY";
             break;
         case TUESDAY:
-            charecters = "TUESDAY";
+            day_str = "TUESDAY";
             break;
         case WEDNESDAY:
-            charecters = "WEDNESDAY";
+            day_str = "WEDNESDAY";
             break;
         case THURSDAY:
-            charecters = "THURSDAY";
+            day_str = "THURSDAY";
             break;
         case FRIDAY:
-            charecters = "FRIDAY";
+            day_str = "FRIDAY";
             break;
         case SATURDAY:
-            charecters = "SATURDAY";
+            day_str = "SATURDAY";
             break;
         default:
-            charecters = "INVALID DAY";
+            day_str = "INVALID";
     }
+    
+    // Copy string character by character
+    int i = 0;
+    while (day_str[i] != '\0') {
+        charecters[i] = day_str[i];
+        i++;
+    }
+    charecters[i] = '\0';  // null terminate
 
     #if DEBUG == 1
     printf("Numerical input: %d => Day: %s\n", numerical, charecters);

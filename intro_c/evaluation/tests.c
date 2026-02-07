@@ -36,7 +36,7 @@ int main(void) {
     printf("%s\n", day_name);
     weekday(day_name, MONDAY); // Expected output: MONDAY
     printf("%s\n", day_name);
-    weekday(day_name, 11); // Expected output: INVALID DAY
+    weekday(day_name, 11); // Expected output: INVALID
     printf("%s\n", day_name); 
 
     return 0;
