@@ -32,12 +32,17 @@ int main(void) {
     // Test the weekday function
     printf("\nTesting weekday:\n");
     char day_name[10]; // Char array to hold the day name
-    weekday(day_name, SUNDAY); // Expected output: SUNDAY
-    printf("%s\n", day_name);
-    weekday(day_name, MONDAY); // Expected output: MONDAY
-    printf("%s\n", day_name);
-    weekday(day_name, 11); // Expected output: INVALID
-    printf("%s\n", day_name); 
+    for (uint8_t numerical_day = 1; numerical_day <= 8; numerical_day++) {
+        weekday(day_name, numerical_day);
+        printf("%s\n", day_name); 
+        // Expected output: SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, INVALID
+    }
+    // weekday(day_name, SUNDAY); // Expected output: SUNDAY
+    // printf("%s\n", day_name);
+    // weekday(day_name, MONDAY); // Expected output: MONDAY
+    // printf("%s\n", day_name);
+    // weekday(day_name, 11); // Expected output: INVALID
+    // printf("%s\n", day_name); 
 
     return 0;
 }
