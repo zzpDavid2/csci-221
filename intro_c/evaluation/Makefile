@@ -18,4 +18,4 @@ weekday.o : weekday.c weekday.h
 	gcc -c weekday.c $(flags)
 
 clean :
-	rm -f tests $(objects)s
+	rm -f tests $(objects)
