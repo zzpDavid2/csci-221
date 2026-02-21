@@ -1,4 +1,4 @@
-flags = -Wall -Werror -Wextra -pedantic
+flags = -Wall -Werror -Wextra -pedantic -g
 objects = moving.o powers.o distance.o weekday.o
 
 test : tests.c $(objects)

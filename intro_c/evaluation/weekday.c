@@ -3,7 +3,7 @@
 #include "weekday.h"
 #define DEBUG 1
 
-char* weekday(char* charecters, enum day numerical) {
+void weekday(char* characters, enum day numerical) {
     char* day_str = NULL;
     size_t str_length = 0;
     
@@ -42,13 +42,13 @@ char* weekday(char* charecters, enum day numerical) {
     }
     
     // Copy string character by character
-    for (uint8_t i = 0; i < str_length; i++) {
-        charecters[i] = day_str[i];
+    for (uint8_t i = 0; i <= str_length; i++) {
+        characters[i] = day_str[i];
     }
 
     #if DEBUG == 1
-    printf("Numerical input: %d => Day: %s\n", numerical, charecters);
+    printf("Numerical input: %d => Day: %s\n", numerical, characters);
     #endif
 
-    return charecters;
+    return;
 }

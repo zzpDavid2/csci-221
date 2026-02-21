@@ -13,9 +13,9 @@ typedef enum day {
     SATURDAY=7
 } day;
 
-char* weekday(char* charecters, enum day numerical);
+void weekday(char* characters, enum day numerical);
 /*
-    Sets the value of the charecters array to the name of the day corresponding to the numerical input.
+    Sets the value of the characters array to the name of the day corresponding to the numerical input.
 */
 
-#endif // DISTANCE_H
+#endif // WEEKDAY_H
