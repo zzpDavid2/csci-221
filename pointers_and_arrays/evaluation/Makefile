@@ -1,10 +1,16 @@
 flags = -Wall -Werror -Wextra -pedantic -g
 
-test: pointers
-	./pointers test1 test2 test3
+objects = binary_search_tree.o io.o
 
-pointers: pointers.c
-	gcc pointers.c -o pointers $(flags)
+tests: binary_search_tree.o io.o
+	gcc $(objects) -o tests $(flags)
+	./tests test1 test2 test3
+
+binary_search_tree.o: binary_search_tree.c
+	gcc -c binary_search_tree.c -o binary_search_tree.o $(flags)
+
+io.o: io.c
+	gcc -c io.c -o io.o $(flags)
 
 clean:
-	rm -f pointers
+	rm -f tests $(objects)
