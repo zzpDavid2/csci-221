@@ -176,6 +176,7 @@ int main(int argc, char *argv[]) {
     printf("%zu\n", list->size);
 
     delete_list(new_list(20, 4));
+    delete_list(list);
 
     int test_array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int *new_array = remove_odds(test_array, 10);
