@@ -5,7 +5,7 @@
 #define DEBUG 1
 
 order_t compare_str(char *a_str, char *b_str){
-    // returns the order_t enum with the result a_str GREATER/LESS (order_t) than b_str
+    // Compare character by character until one ends or a difference is found
     if(a_str == NULL){
         #if DEBUG == 1
             printf("compare_str failed. a_str is NULL\n");
@@ -30,7 +30,6 @@ order_t compare_str(char *a_str, char *b_str){
             break;
         }
     }while(!(a_str[i]=='\0' || b_str[i]=='\0')); 
-    // this is not perfect since we could have a runnaway loop if neither of them have a terminator
     return EQUAL;
 }
 
@@ -109,6 +108,7 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
     
     order_t order = compare_str(data_str, node->data_str);
 
+    // Traverse to the right if data_str is greater
     if(order == GREATER){
         if(node->right == NULL){
             return &(node->right);
@@ -117,7 +117,9 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
             depth--;
         }
         return find_node_location(&(node->right), data_str, depth);
-    }else if (order == LESS){
+    }
+    // Traverse to the left if data_str is less
+    else if (order == LESS){
         if(node->left == NULL){
             return &(node->left);
         }
@@ -233,14 +235,14 @@ void remove_from_subtree(node_t **node_pp){
         return;
     }
 
-    // now we need to find the greatest node in the left subtree
+    // Two children case: replace with in-order predecessor (rightmost in left subtree)
     node_t **current_node_pp = &node->left;
     node_t *current_node = node->left;
     while (current_node->right != NULL){
         current_node_pp = &current_node->right;
         current_node = current_node->right;
     }
-    // we need to copy str because the original str will be freed
+    // Copy predecessor's data and remove the predecessor
     free(node->data_str);
     node->data_str = copy_str(current_node->data_str);
     remove_from_subtree(current_node_pp);

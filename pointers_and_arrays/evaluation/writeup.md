@@ -50,6 +50,24 @@ I created a comprehensive test suite in [tests.c](tests.c) with separate test fu
 
 All tests use assertions to verify correctness. The tests caught the critical insertion bug during development.
 
+### I/O String Manipulation
+
+I implemented a command-line utility in [io.c](io.c) that reads a string and repeat count from user input, then prints the string the specified number of times. An optional command-line flag `-r` reverses the string output.
+
+**Main functionality:**
+- `reverse_print(str)`: Recursively prints a string in reverse order. Advances through the string with `str + 1` in the recursive call, then prints the current character when backtracking up the call stack. The null terminator serves as the base case.
+- `main(argc, argv)`: Prompts user for a string and an integer repeat count. Safely checks for the `-r` command-line argument by verifying `argc > 1` before accessing `argv[1]`. For each iteration, prints the string either normally or reversed.
+
+**Key implementation details:**
+- Uses `strtol(int_str, &end_ptr, 10)` to convert the user-provided string to an unsigned 32-bit integer for the repeat count.
+- Command-line safety: The original code crashed when run without arguments because it accessed `argv[1]` without checking `argc`. Fixed by adding `argc > 1` check.
+- Recursion strategy: `reverse_print` leverages call stack depth to achieve reversal - it recurses to the string's end, then backtracks while printing characters.
+
 ## Bugs / Limitations
 
-- No rebalancing implemented, so the tree can become unbalanced with certain insertion orders (e.g., inserting sorted strings creates a linked list).
+- All test cases works.
+- No rebalancing implemented, so insertions in sorted order create degenerate trees (linear chains).
+- Test coverage doesn't include removing the root node or operating on empty trees.
+
+
+
