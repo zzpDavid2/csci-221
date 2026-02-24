@@ -25,9 +25,13 @@ uint32_t input_integer(void){
     // Process integer string
     char *end_ptr;
     // Convert string to integer using strtol
-    uint32_t repeat_num = strtol(int_str, &end_ptr, 10);
-    if (end_ptr == int_str) {
-        printf("Invalid integer input.\n");
+    int64_t repeat_num = strtol(int_str, &end_ptr, 10);
+    if(end_ptr == int_str) {
+        printf("Invalid integer input. Try again.\n");
+        // Recursively retry
+        return input_integer();
+    }else if(repeat_num < 0){
+        printf("Only positive integers allowed. Try again.\n");
         // Recursively retry
         return input_integer();
     }
