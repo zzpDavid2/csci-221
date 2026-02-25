@@ -3,6 +3,7 @@
 #include <string.h>
 #include <assert.h>
 #include "binary_search_tree.h"
+#include "binary_search_tree_test.h"
 
 void test_compare_str(void) {
     printf("Testing compare_str...\n");

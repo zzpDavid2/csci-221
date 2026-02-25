@@ -10,14 +10,14 @@ run: tests io
 tests: binary_search_tree.o tests.o
 	gcc binary_search_tree.o tests.o -o tests $(flags)
 
-binary_search_tree.o: binary_search_tree.c binary_search_tree.h
+binary_search_tree.o: binary_search_tree.c binary_search_tree.h binary_search_tree_test.h
 	gcc -c binary_search_tree.c -o binary_search_tree.o $(flags)
 
-tests.o: tests.c binary_search_tree.h
+tests.o: tests.c binary_search_tree.h binary_search_tree_test.h
 	gcc -c tests.c -o tests.o $(flags)
 
 io: io.c
 	gcc io.c -o io $(flags)
 
 clean:
-	rm -f tests $(objects)
+	rm -f tests io $(objects)

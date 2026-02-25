@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include "binary_search_tree.h"
+#include "binary_search_tree_test.h"
 
 #define DEBUG 1
 
