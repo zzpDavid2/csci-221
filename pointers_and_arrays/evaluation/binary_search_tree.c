@@ -54,7 +54,7 @@ char *copy_str(char *str){
         return NULL;
     }
     size_t length = get_str_len(str);
-    char *new_str = calloc(length+1, sizeof(char));
+    char *new_str = (char *)calloc(length+1, sizeof(char));
     for(size_t i=0; i<length+1; i++){
         new_str[i] = str[i];
     }
@@ -62,13 +62,13 @@ char *copy_str(char *str){
 }
 
 node_t *new_node(char *data_str){
-    node_t *node = calloc(1, sizeof(node_t));
+    node_t *node = (node_t *)calloc(1, sizeof(node_t));
     node->data_str = copy_str(data_str); // we need to copy string here because data_str can be immutable.
     return node;
 }
 
 binary_search_tree_t *new_bst (char *root_str){
-    binary_search_tree_t *bst = calloc(1, sizeof(binary_search_tree_t));
+    binary_search_tree_t *bst = (binary_search_tree_t *)calloc(1, sizeof(binary_search_tree_t));
     node_t *root = new_node(root_str);
     bst->root = root;
     bst->size = 1;
@@ -82,14 +82,14 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
             #if DEBUG == 1
                 printf("insert_to_subtree: exceeded maximum depth\n");
             #endif
-        return 0;
+        return NULL;
     }
     }
     if (node_pp == NULL){
         #if DEBUG == 1
             printf("find_node_location: node_pp is NULL\n");
         #endif
-        return 0;
+        return NULL;
     }
 
     node_t *node = *node_pp;
@@ -98,13 +98,13 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
         #if DEBUG == 1
             printf("find_node_location: node is NULL\n");
         #endif
-        return 0;
+        return NULL;
     }
     if (data_str == NULL){
         #if DEBUG == 1
             printf("find_node_location: str is NULL\n");
         #endif
-        return 0;
+        return NULL;
     }
     
     order_t order = compare_str(data_str, node->data_str);

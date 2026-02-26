@@ -25,7 +25,7 @@ uint32_t input_integer(void){
     // Process integer string
     char *end_ptr;
     // Convert string to integer using strtol
-    int64_t repeat_num = strtol(int_str, &end_ptr, 10);
+    int64_t repeat_num = (int64_t)strtol(int_str, &end_ptr, 10);
     if(end_ptr == int_str) {
         printf("Invalid integer input. Try again.\n");
         // Recursively retry
@@ -35,7 +35,7 @@ uint32_t input_integer(void){
         // Recursively retry
         return input_integer();
     }
-    return repeat_num;
+    return (uint32_t)repeat_num;
 }
 
 int main(int argc, char *argv[]) {
