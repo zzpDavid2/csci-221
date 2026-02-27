@@ -20,18 +20,19 @@ order_t compare_str(char *a_str, char *b_str){
         return GREATER;
     }
     size_t i = 0;
-    do{
-        if(a_str[i] > b_str[i]) {
+    while (a_str[i] != '\0' && b_str[i] != '\0' && i <= SIZE_T_MAX) {
+        if (a_str[i] > b_str[i]) {
             return GREATER;
-        } else if (b_str[i] > a_str[i]) {
+        }
+        if (a_str[i] < b_str[i]) {
             return LESS;
         }
         i++;
-        if(i >= SIZE_T_MAX){
-            break;
-        }
-    }while(!(a_str[i]=='\0' || b_str[i]=='\0')); 
-    return EQUAL;
+    }
+
+    if (a_str[i] == '\0' && b_str[i] == '\0') return EQUAL;
+    if (a_str[i] == '\0') return LESS;
+    return GREATER;
 }
 
 size_t get_str_len(char *str){
@@ -63,7 +64,8 @@ char *copy_str(char *str){
 
 node_t *new_node(char *data_str){
     node_t *node = (node_t *)calloc(1, sizeof(node_t));
-    node->data_str = copy_str(data_str); // we need to copy string here because data_str can be immutable.
+    // we will always copy the string to ensure the node owns its data
+    node->data_str = copy_str(data_str);
     return node;
 }
 
@@ -98,13 +100,13 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
         #if DEBUG == 1
             printf("find_node_location: node is NULL\n");
         #endif
-        return NULL;
+        return node_pp;
     }
     if (data_str == NULL){
         #if DEBUG == 1
             printf("find_node_location: str is NULL\n");
         #endif
-        return NULL;
+        return node_pp;
     }
     
     order_t order = compare_str(data_str, node->data_str);
@@ -135,7 +137,7 @@ node_t **find_node_location(node_t **node_pp, char *data_str, size_t *depth){
     return node_pp;
 }
 
-void insert_to_subtree(node_t *node, char *data_str, size_t depth){
+void insert_to_subtree(node_t *node, char *data_str, size_t size){
     if (node == NULL)
     {
         #if DEBUG == 1
@@ -151,11 +153,14 @@ void insert_to_subtree(node_t *node, char *data_str, size_t depth){
         return;
     }
 
+    size_t depth = size;
+
     node_t **insert_location = find_node_location(&node, data_str, &depth);
     if (insert_location == NULL){
         #if DEBUG == 1
             printf("insert_to_subtree: insert_location is NULL\n");
         #endif
+        return;
     }
     if(*insert_location == NULL){
         *insert_location = new_node(data_str);
@@ -175,6 +180,17 @@ void insert(binary_search_tree_t *tree, char *data_str){
         #endif
         return;
     }
+    if(data_str == NULL){
+        #if DEBUG == 1
+            printf("insert: data_str is NULL\n");
+        #endif
+        return;
+    }
+    if(tree->root == NULL){
+        tree->root = new_node(data_str);
+        tree->size = 1;
+        return;
+    }
     insert_to_subtree(tree->root, data_str, tree->size);
     tree->size++;
     return;
@@ -190,8 +206,7 @@ void free_subtree(node_t *node){
     if (node->right != NULL){
         free_subtree(node->right);
     }
-    free(node->data_str);
-    free(node);
+    free_node(node);
     return;
 }
 

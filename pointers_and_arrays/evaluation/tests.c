@@ -225,6 +225,37 @@ int main(void) {
     test_comprehensive();
     
     printf("\n=== All tests passed! ===\n\n");
+
+    binary_search_tree_t *test_tree = new_bst("test");
+
+    printf("Initial tree size: %zu\n", test_tree->size);
+    printf("Initial node: %s\n", test_tree->root->data_str);
+
+    insert(test_tree, "testa");
+    insert(test_tree, "tesa");
+
+    printf("Tree size after insertions: %zu\n", test_tree->size);
+    printf("left node: %s\n", test_tree->root->left->data_str);
+    printf("right node: %s\n", test_tree->root->right->data_str);
+
+    insert(test_tree, "tesb");
+
+    printf("left-right: %s\n", test_tree->root->left->right->data_str);
+
+    printf("%u\n", remove_str_from_tree(test_tree, "test"));
+    printf("%u\n", remove_str_from_tree(test_tree, "abc"));
+
+    printf("Root node: %s\n", test_tree->root->data_str);
     
+    delete_tree(test_tree);
+
+    test_tree = new_bst("test");
+
+    remove_str_from_tree(test_tree, "test");
+
+    remove_str_from_tree(test_tree, "test");
+
+    insert(test_tree, "a");
+
     return 0;
 }

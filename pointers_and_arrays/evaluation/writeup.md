@@ -66,8 +66,6 @@ I implemented a command-line utility in [io.c](io.c) that reads a string and rep
 ## Bugs / Limitations
 
 - All test cases works.
-- No rebalancing implemented, so insertions in sorted order create degenerate trees (linear chains).
-- Test coverage doesn't include removing the root node or operating on empty trees.
 
 
 

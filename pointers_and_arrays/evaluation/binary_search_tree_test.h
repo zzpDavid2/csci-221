@@ -10,9 +10,6 @@
 // get_str_len: Returns length of null-terminated string
 size_t get_str_len(char *str);
 
-// compare_str: Returns comparison result (GREATER, EQUAL, LESS)
-order_t compare_str(char *a_str, char *b_str);
-
 // copy_str: Returns copy of input string
 char *copy_str(char *str);
 
