@@ -33,22 +33,9 @@ The BST implementation includes these helper functions:
 
 ## Testing
 
-I created a comprehensive test suite in [tests.c](tests.c) with separate test functions for each component:
+I created a comprehensive test suite in [tests.c](tests.c) with separate test functions for each component. All tests use assertions to verify correctness.
 
-- `test_compare_str()`: Tests string comparison including equal strings, greater/less than cases, and NULL handling.
-- `test_get_str_len()`: Verifies string length calculation for empty strings and normal cases.
-- `test_copy_str()`: Confirms strings are copied to new memory addresses with identical content, and NULL handling.
-- `test_new_bst()`: Validates tree creation, initial size, and root node properties.
-- `test_insert()`: Creates a tree with multiple values ("dog", "cat", "ant", "elephant", "zebra") and verifies the BST structure by checking left/right child relationships.
-- `test_find_node_location()`: Tests finding existing nodes in the tree.
-- `test_remove_str_from_tree()`: Tests three scenarios:
-  - Removing a leaf node and verifying parent pointer is NULL
-  - Removing a node with one child and verifying the child replaces it
-  - Attempting to remove a non-existent node returns 0
-- `test_delete_tree()`: Creates a tree with multiple nodes and frees it to check for memory leaks (manual verification).
-- `test_comprehensive()`: Builds a larger tree with 10+ fruit names, performs multiple removals, and verifies no crashes.
-
-All tests use assertions to verify correctness. The tests caught the critical insertion bug during development.
+Additionally, I used a debugger to track the state of the tree over the run. 
 
 ### I/O String Manipulation
 
@@ -59,13 +46,12 @@ I implemented a command-line utility in [io.c](io.c) that reads a string and rep
 - `main(argc, argv)`: Prompts user for a string and an integer repeat count. Safely checks for the `-r` command-line argument by verifying `argc > 1` before accessing `argv[1]`. For each iteration, prints the string either normally or reversed.
 
 **Key implementation details:**
-- Uses `strtol(int_str, &end_ptr, 10)` to convert the user-provided string to an unsigned 32-bit integer for the repeat count.
-- Command-line safety: The original code crashed when run without arguments because it accessed `argv[1]` without checking `argc`. Fixed by adding `argc > 1` check.
 - Recursion strategy: `reverse_print` leverages call stack depth to achieve reversal - it recurses to the string's end, then backtracks while printing characters.
+
+## Testing
+I tested the command line interface and it works as expected both with and without `-r`.
 
 ## Bugs / Limitations
 
 - All test cases works.
-
-
-
+- Both programs should work to my knowledge.

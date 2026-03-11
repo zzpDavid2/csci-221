@@ -36,7 +36,7 @@ uint32_t masking(uint8_t first, uint8_t last){
 }
 
 uint32_t logical_negation(uint32_t x){
-    return x ^ (uint32_t)1;
+    return x ^ UINT32_MAX;
 }
 
 uint64_t handle_overflow(uint32_t a, uint32_t b){
@@ -48,18 +48,23 @@ uint64_t handle_overflow(uint32_t a, uint32_t b){
 }
 
 int main(void) {
-    print_binary(masking(3, 5));
-    print_binary(masking(0, 30));
-    print_binary(masking(0, 31));
+    int32_t a = 1;
+    int32_t b = INT32_MAX;
+    printf("%d\n", INT32_MAX);
+    printf("%d\n", a+b);
 
-    printf("%u\n", masking(0, 30));
+    // print_binary(masking(3, 5));
+    // print_binary(masking(0, 30));
+    // print_binary(masking(0, 31));
 
-    printf("%u\n", logical_negation(0));
+    // printf("%u\n", masking(0, 30));
 
-    print_binary(logical_negation(0));
+    // printf("%u\n", logical_negation(0));
 
-    printf("%u\n", UINT32_MAX);
-    printf("%llu\n", handle_overflow(UINT32_MAX, 1));
+    // print_binary(logical_negation(0));
+
+    // printf("%u\n", UINT32_MAX);
+    // printf("%llu\n", handle_overflow(UINT32_MAX, 1));
 
     return 0;
 }
