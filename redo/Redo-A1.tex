@@ -1,0 +1,206 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{C Intro Assignment}
+\runningheader{CSCI 221}{}{C Intro Assignment}
+
+\newcommand{\size}{2023}
+
+
+\begin{document}
+\title{C Assignment Redos}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to show that you have improved your understanding of parts of the course that you have had trouble with.
+This assignment has no grade itself, but will allow you to regain points you lost on previous assignments.
+This is an optional assignment, you will not be penalized if you choose not to redo anything.
+
+\textbf{Due Date:}
+Wednesday, April 8th at 1:00 pm.
+
+For this assignment, you will be allowed to redo old assignments that you had difficulty with.
+You may choose up to three (3) assignments to redo.
+For each assignment, you may choose which questions you will redo (including choosing not to redo any).
+For each question, for each issue you fix, you will get points equal to half of the amount you lost for that issue.
+%if your redo is better than your original submission, your grade on the original assignment will be updated to be the average of the grade on the original and the grade on the resubmission.
+This means that redoing a question will allow you to regain half of the points that you lost on that question.
+
+It is likely that submission for this assignment will be very large.
+To ensure timely grading (and the sanity of our staff), please label your submissions with clear names and make sure to follow the directions.
+
+In addition to the answers to the questions themselves, you should submit a pdf containing the following information:
+\begin{itemize}
+\item
+Which questions you are redoing.
+You should specify not only the question, but the assignment that it comes from.
+Please list the questions in order that they appeared during the course.
+
+\item
+What changes you made.
+For each question, you should discuss what the problems with your original submission were, which problems you fixed, and how you fixed them.
+For questions that have text answers, your resubmission should be part of this pdf file.
+For questions that have coding answers, you should state the name of the file (or files) that contain your code.
+\end{itemize}
+
+If you have any questions or concerns not answered by this document, please contact Charlie prior to submitting your work.
+
+% ============================================================
+\section*{Design and Debugging: Debugging}
+% ============================================================
+
+\textbf{Issue being fixed:} ``Good explanation of defect when exponent was not power of two'' (lost 1 point).
+
+\textbf{Original problem:} My original explanation of the \verb|r = x * r| bug did not clearly describe why it specifically fails for exponents that are not a power of two.
+
+\textbf{Improved explanation:}
+
+\begin{itemize}
+    \item The return statement \verb|return r * s| needs to be changed to \verb|return r| or \verb|return result|. For the case of y=0, the zero-th power of any number should be 1. In the original code, any test with y=0 would return x. For example, testing \verb|f(2,0)| would return 2 instead of 1. This is because the while loop will not run when y=0 and the function would return $r\cdot s$, which is always x. In addition to the change in the return statement, the \verb|y>1| condition for the while loop in the original code should be changed to \verb|y>0|. My version of the code has been tested to output the correct results.
+
+    \item The line \verb|r = x * r| needs to be changed to \verb|r = s * r|. The algorithm interprets the exponent \verb|y| in binary: in each iteration, \verb|s| is updated to \verb|s * s|, so after $i$ iterations \verb|s| holds $\mathtt{base}^{2^i}$. When a bit of \verb|y| is 1, we must multiply the accumulated result by the contribution of that bit position, which is \verb|s| = $\mathtt{base}^{2^i}$. The bug uses \verb|x| (the original base, always $\mathtt{base}^1$) instead of \verb|s|.
+
+    For a power-of-two exponent (e.g.\ \verb|y=4 = 100|${}_2$), all three loop iterations have \verb|y%2 == 0|, so \verb|r| is never updated during the loop and the final \verb|r * s| happens to give the correct answer by accident. For a non-power-of-two exponent the bug is visible: consider \verb|f(2,6)|. Since $6 = 110_2$, the correct answer is $2^6 = 64$. Tracing the original code:
+    \begin{enumerate}
+        \item $y=6$, \verb|y%2==0|: $s = 2^2 = 4$, $y = 3$.
+        \item $y=3$, \verb|y%2==1|: \verb|r = x*r = 2*1 = 2| (bug: should be \verb|s*r = 4*1 = 4|); $s = 16$, $y = 1$.
+        \item Loop exits ($y \leq 1$).
+        \item Return $r \times s = 2 \times 16 = 32$ (wrong; should be $64$).
+    \end{enumerate}
+    The same test with the fixed code (\verb|r = s * r|) gives $r = 4$ after step 2, so the return is $4 \times 16 = 64$. I verified this by compiling and running both versions on \verb|f(2,6)|, \verb|f(2,7)|, and \verb|f(3,5)|.
+\end{itemize}
+
+The fully corrected code is as follows. The code has comments that complement my answer to the questions.
+\begin{verbatim}
+uint32_t exponent(uint32_t base, uint32_t power){
+    // the function compute base^power in a fasion similar to converting numbers into binary
+    uint32_t result = 1;
+    // I call this the current_digit_value
+    // because it resembles the 2^n value represented by the nth digit in binary.
+    uint32_t current_digit_value = base;
+
+    while (power > 0){ // allows the loop to run once when power=1
+        if ((power % 2) == 1){ // use () here to make clear
+            // multiply the result by the current power if the remainder is 1
+            result = current_digit_value * result;
+            // this is unnecessary but makes the removal of the remainder more clear
+            power -= 1;
+        }
+        //grow the current_power by power of 2
+        current_digit_value = current_digit_value * current_digit_value;
+        power = power / 2;
+    }
+    // don't multiply by current_power at the end so that 0th power will be correctly 1.
+    return result;
+}
+\end{verbatim}
+
+% ============================================================
+\section*{Pointers and Arrays}
+% ============================================================
+
+\subsection*{Binary Search Trees}
+
+\textbf{Issue being fixed:} Missing NULL-tree checks in \verb|delete_tree| and \verb|remove_str_from_tree|.
+
+\textbf{Original problem:} Both functions assumed the \verb|tree| pointer was non-NULL.
+If a NULL tree was passed, the functions would dereference a NULL pointer and crash.
+
+\textbf{Fix:} Added a NULL check at the start of each function.
+The relevant file is \textbf{binary\_search\_tree.c}.
+
+\begin{verbatim}
+// In remove_str_from_tree:
+// REDO FIX: added NULL check for tree to prevent crash on NULL input
+if(tree == NULL){
+    #if DEBUG == 1
+        printf("remove_str_from_tree: tree is NULL\n");
+    #endif
+    return 0;
+}
+
+// In delete_tree:
+// REDO FIX: added NULL check for tree to prevent crash on NULL input
+if(tree == NULL){
+    #if DEBUG == 1
+        printf("delete_tree: tree is NULL\n");
+    #endif
+    return;
+}
+\end{verbatim}
+
+\textbf{Testing:} I added the following tests:
+\begin{verbatim}
+remove_str_from_tree(NULL, "test");  // now returns 0 safely
+delete_tree(NULL);                   // now returns safely
+\end{verbatim}
+Both calls no longer crash.
+
+\subsection*{I/O}
+
+\textbf{Issues being fixed:}
+\begin{itemize}
+    \item The \verb|-r| flag was only recognized when it was \verb|argv[1]|; any other position was ignored.
+    \item Compound short flags like \verb|-abr| were not parsed, so \verb|-r| embedded in a compound flag was missed.
+\end{itemize}
+
+\textbf{Original problem:} The original code was:
+\begin{verbatim}
+if(argc > 1){
+    is_reversed = (strcmp(argv[1], "-r") == 0);
+}
+\end{verbatim}
+This means only \verb|./io -r| works.
+\verb|./io -a -r| (flag in a later position) and \verb|./io -abr| (compound flag) both failed to set \verb|is_reversed|.
+
+\textbf{Fix:} Loop over all arguments and check each character inside short flag groups.
+An argument is treated as a short flag group if it starts with \verb|-| but not \verb|--|.
+The relevant file is \textbf{io.c}.
+
+\begin{verbatim}
+// REDO FIX: scan all arguments and handle compound short flags (e.g. -abr)
+// An argument is a short flag group if it starts with '-' but not '--'.
+// We check whether 'r' appears anywhere in the flag characters after the '-'.
+for(int i = 1; i < argc; i++){
+    if(argv[i][0] == '-' && argv[i][1] != '-' && strchr(argv[i] + 1, 'r') != NULL){
+        is_reversed = true;
+        break;
+    }
+}
+\end{verbatim}
+Verified: \verb|./io -r|, \verb|./io -abr|, and \verb|./io -a -r| all reverse correctly; \verb|./io --reverse| does not (correctly excluded as a long option).
+
+\subsection*{Writeup}
+
+\textbf{pointers\_and\_arrays\_writeup.md} has been updated to better describe the testing and show the what is work or not based on testing.
+
+% ============================================================
+\section*{Integer Assignment: Negating Integers}
+% ============================================================
+
+\textbf{Issue being fixed:} The comment in the \verb|negate| function incorrectly described what happens when \verb|x| is \verb|INT32_MIN|.
+
+\textbf{Original problem:} The original comment read:
+\begin{verbatim}
+// When x is INT32_MIN its negation is UINT32_MAX,
+\end{verbatim}
+This is wrong: the intermediate value \verb|~0x80000000| is \verb|0x7FFFFFFF| (not \verb|UINT32_MAX = 0xFFFFFFFF|).
+
+\textbf{Fix:} Corrected the comment in \textbf{integers.c} to accurately describe the computation:
+\begin{verbatim}
+// We cast to unsigned to perform the bitwise NOT and addition in
+// well-defined unsigned arithmetic.
+// When x is INT32_MIN, we compute ~0x80000000 + 1 = 0x80000000
+// (all in uint32_t, no overflow).
+// Casting 0x80000000 back to int32_t yields INT32_MIN.
+\end{verbatim}
+
+\end{document}

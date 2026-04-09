@@ -1,0 +1,112 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{Assembly Basics Assignment}
+\runningheader{CSCI 221}{}{Assembly Basics Assignment}
+
+
+\begin{document}
+\title{Assembly Basics Assignment (Evaluation)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to evaluate your understanding of assembly basics. 
+Feel free to collaborate with others and use resources, but all code and writeups must be your own. 
+To submit your assignment, please submit your code and writeup. 
+Mark which sections of the code are for which questions by using different files or comments in the file. 
+For this assignment, your code does not need to check for invalid input. 
+For this assignment, you should not use pseudoinstructions. 
+
+\textbf{Due Date:}
+Friday, April 10th at 1:00 pm. 
+
+For this assignment, you will be writing code in MIPS. 
+Unfortunately, most machines you interact with will use a different ISA than MIPS, which means that they will be unable to run MIPS code. 
+In order to test and debug your code, you will need to make use of a MIPS simulator. 
+Many MIPS simulators are available online. 
+If you have a preferred simulator, feel free to use it. 
+If not, we recommend the QtSPIM MIPS simulator. 
+If you are having issues installing on a mac, you can try the following link: \url{https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac}. 
+
+\begin{questions}
+
+\question[10]
+\textbf{Fibonacci.}
+Write MIPS assembly code that computes the $n$th Fibonacci number. 
+For reference, the 0th Fibonacci number is 0, the 1st Fibonacci number is 1, and every subsequent Fibonacci number is the sum of the two previous Fibonacci numbers. 
+You should use loops rather than recursion. 
+You should store the result in $\$v0$. 
+Assume that $n$ is stored in $\$a0$. 
+
+\question[10]
+\textbf{Array Counting.}
+Write MIPS assembly code that counts the frequency of values in particular ranges in a given array of single-precision floating point numbers. 
+In addition to the array, you are given 2 values. 
+You should count the number of values in the array smaller than both values, larger than both values, and in between the values. 
+Assume that the lower end of each range is inclusive, and the upper end of each range is exclusive. 
+You should store the results of the counting in $\$s0$, $\$s1$, and $\$s2$. 
+Assume that the array is stored in $\$a0$ and its length is stored in $\$a1$. 
+Assume that the 2 values are stored in  $\$a2$, and $\$a3$, and that they are stored in ascending order. 
+
+\question[10]
+\textbf{Array Permutation.}
+Write MIPS assembly code that performs the same functionality as the following C code:
+\begin{verbatim}
+for (int i=0; i<length; i++){
+    swap(&array[i], &array[permutations[i]]);
+}
+\end{verbatim}
+Assume that \texttt{array} and \texttt{permutations} both consist of 32-bit integers and that each value in \texttt{permutations} is between 0 and \texttt{length}. 
+Assume that the arrays contain the same number of elements. 
+Assume that \texttt{array}, \texttt{permutations}, and \texttt{length} are stored in $\$a0$, $\$a1$, and $\$a2$ respectively. 
+
+\question[10]
+\textbf{Linked List Product.}
+Write MIPS assembly code that computes the product of all values in a linked list. 
+Assume that nodes in the list consist of a 16-bit integer and a pointer to the next node, stored in that order. 
+Assume that the final node's pointer contains the value 0. 
+Assume that the result will fit in 64 bits. 
+Remember that pointers in MIPS are 32 bits. 
+You should store the result in $\$v0$ and $\$v1$. 
+Assume that a pointer to the first node in the list is stored in $\$a0$. 
+
+%\question[10]
+%\textbf{Multiplying Arrays.}
+%\begin{parts}
+%\part[4]
+%Write a MIPS assembly function that takes as input two 32 bit integers and returns their product. 
+%
+%\part[6]
+%Write a MIPS assembly function that takes as input pointers to two lists of 32 bit integers, a pointer to a list of 64 bit integers and the length of those lists, which is assumed to be the same. 
+%(All lists contain the same number of elements.)
+%Each element in the third list should be set to the product of the corresponding elements in the first two lists. 
+%In code form, this means:
+%\begin{verbatim}
+%for (int i=0; i<length; i++){
+%    array3[i] = array1[i] * array2[i];
+%}
+%\end{verbatim}
+%For full credit, use your function from the previous part. 
+%\end{parts}
+
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+
+\end{questions}
+
+\end{document}

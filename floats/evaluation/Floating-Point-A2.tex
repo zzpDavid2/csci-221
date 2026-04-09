@@ -1,0 +1,96 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{Floating Point Assignment}
+\runningheader{CSCI 221}{}{Floating Point Assignment}
+
+
+\begin{document}
+\title{Floating Point Assignment (Evaluation)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is designed to evaluate your understanding of floating point numbers. 
+Feel free to collaborate with others and use resources, but all code and writeups must be your own. 
+To submit your assignment, please submit your code, makefile, and writeup. 
+For full credit, your code should check for invalid input. 
+
+\textbf{Due Date:}
+Wednesday, March 18th at 1:00 pm. 
+
+For this assignment you will be dealing with Tiny Floating Point numbers. 
+These numbers use the same IEEE standard encoding schemes that we talked about in class. 
+However, they contain only 8 bits. 
+The MSB is the sign bit. 
+The significand representation is the 3 least significant bits. 
+The remaining 4 bits are the exponent representation. 
+You will be representing Tiny Floating Point numbers as a sequence of bits using an appropriate type. 
+For full credit, do not use an array, a struct, or any other composite data type in your representation. 
+
+\begin{questions}
+\question[10]
+\textbf{Floating Point Increments.}
+\begin{parts}
+\part[5]
+What is the difference between the largest non-infinite number representable with tiny floating point and the second largest such number?
+Show your work. 
+
+\textbf{Answer:}
+Since there are 4 bits for encoding the exponent and 3 bits for the significand. The largest exponent encoding that is not all ones is 
+$$1110_2=2^4-2=14.$$
+The bias is $2^{4-1}-1=8-1=7$.
+Thus, the largest exponent is
+$$14-7=7.$$
+The largest significand encoding is all ones, which means the largest significand has $3$ ones after the decimal point:
+$$1.111=2-2^{-3}$$
+which  This is
+Thus, the largest number is
+$$(2-2^{-3})\cdot2^{7}=2^{8}-2^{4}.$$
+The second largest number have a $0$ instead of a $1$ in the least significant digit of the significand. The significand is
+$$1.110=2-2^{-2}$$
+Thus, it is
+$$(2-2^{-2})\cdot2^{7}=2^{8}-2^{5}.$$
+Finally, the difference is
+$$2^{8}-2^{4}-(2^{8}-2^{5})=2^{5}-2^{4}=32-16=16.$$
+
+\part[5]
+What is the difference between the second smallest positive number representable with tiny floating point and the smallest such number?
+Show your work. 
+\end{parts}
+
+\textbf{Answer:}
+The smallest exponent encoding is $0$. Then its in the denormalized encoding. In this case, the smallest non-zero significand is all $0$s and a $1$ in the least significant digit. So the significand is $0.001=2^{-3}$ while the exponent value is $0-7+1=-6$. Thus, the value is
+$$2^{-3}\cdot2^{-6}=2^{-9}.$$
+And the next smallest is
+$$2^{-2}\cdot2^{-6}=2^{-8}$$
+The difference is
+$$2^{-8}-2^{-9}=2^{-9.}$$
+
+\question[20]
+\textbf{Adding Tiny Floating Point.}
+Write a function that takes two tiny floating point numbers as input and returns their sum as a tiny floating point number. 
+Hint: You should be able to combine a significant amount of functionality between adding and multiplying. 
+
+\question[20]
+\textbf{Multiplying Tiny Floating Point.}
+Write a function that takes two tiny floating point numbers as input and returns their product as a tiny floating point number. 
+Hint: You should be able to combine a significant amount of functionality between adding and multiplying. 
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+\end{questions}
+
+\end{document}

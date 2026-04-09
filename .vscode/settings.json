@@ -17,6 +17,7 @@
         "__node_handle": "c",
         "limits.h": "c",
         "__locale": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "type_traits": "c"
     }
 }
