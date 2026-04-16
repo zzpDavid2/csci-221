@@ -1,0 +1,110 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{Advanced Assembly Assignment}
+\runningheader{CSCI 221}{}{Advanced Assembly Assignment}
+
+
+\begin{document}
+\title{Advanced Assembly Assignment (Evaluation)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of advanced assembly. 
+Feel free to collaborate with others and use resources, but all code and writeups must be your own. 
+To submit your assignment, please submit your code and writeup. 
+Mark which sections of the code are for which questions by using different files or comments in the file. 
+For this assignment, your code does not need to check for invalid input. 
+For this assignment, you are allowed to use pseudoinstructions. 
+
+\textbf{Due Date:}
+Friday, April 9th at 1:00 pm. 
+
+For this assignment, you will be writing code in MIPS. 
+Unfortunately, most machines you interact with will use a different ISA than MIPS, which means that they will be unable to run MIPS code. 
+In order to test and debug your code, you will need to make use of a MIPS simulator. 
+Many MIPS simulators are available online. 
+If you have a preferred simulator, feel free to use it. 
+If not, we recommend the QtSPIM MIPS simulator. 
+
+\begin{questions}
+
+\question[12]
+\textbf{Decaying Sum.}
+\begin{parts}
+\part[6]
+Rewrite the following code to be tail recursive. 
+You may choose to write additional helper functions. 
+\begin{verbatim}
+uint32_t decaying_sum(uint16_t* values, uint16_t length, uint16_t decay){
+    if (length <= 0){
+        return 0;
+    }
+    uint32_t rest = decaying_sum(&values[1], length-1, decay);
+    uint32_t decayed = rest / decay;
+    return values[0] + decayed;
+}
+\end{verbatim}
+For full credit, your code should follow the same general approach as the original code, rather than being a complete rewrite. 
+
+\part[6]
+Write a MIPS assembly function that implements your code from the previous part, but does not make any recursive calls. 
+\end{parts}
+
+
+\question[8]
+\textbf{Days of the Week.}
+Write a MIPS assembly function that takes as input a pointer to a list of 10 characters and an enum representing the days of the week.
+The function should set the list to contain the word corresponding to that day of the week following C string guidelines. 
+You might find it helpful to use the ASCII character representation to set the values. 
+Assume that the enum is numbered from 0 to 6, starting on Sunday and ending on Saturday. 
+The function should return whether the value passed was a valid enum value. 
+For full credit, your function should use a jump table. 
+
+\question[15]
+\textbf{Overflow in a Tree.}
+\begin{parts}
+\part[8]
+Write a MIPS assembly function that takes as input two double precision floating point numbers and returns a boolean (0 or 1) indicating whether they overflow (result in a special encoding number) when added together. 
+\part[7]
+Write a MIPS assembly function that takes as input a double precision floating point number and a pointer to a binary search tree node and returns a boolean indicating whether any value in the tree rooted at that node overflows when added to the floating point number. 
+The tree nodes contains a double precision floating point number, a pointer to the left child node of the tree, and a pointer to the right child node of the tree, stored in that order. 
+You can assume that any invalid pointer has the value zero. 
+For full credit, your function should search the minimum number of tree nodes. 
+For full credit, use your function from the previous part. 
+\end{parts}
+
+\question[10]
+\textbf{Assembly Representation.}
+Consider the following code:
+\begin{verbatim}
+    Loop:   sll $t0, $s0, 2 	
+            addu $t1, $t0, $s3 	
+            lw $t2, 0($t1) 
+            blt $t2, $s2, Exit 
+            addu $s0, $s0, $s1 
+            j Loop 
+    Exit:
+\end{verbatim}
+Convert the code from assembly language to machine code. 
+Assume that the code starts at address 0x3080. 
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+
+\end{questions}
+
+\end{document}

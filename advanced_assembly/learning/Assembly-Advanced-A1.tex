@@ -1,0 +1,173 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{Advanced Assembly Assignment}
+\runningheader{CSCI 221}{}{Advanced Assembly Assignment}
+
+
+\begin{document}
+\title{Advanced Assembly Assignment (Learning)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of advanced assembly and receive feedback. 
+Point values are assigned so that you can differentiate between large and small mistakes, but this assignment does not affect your grade. 
+To submit your assignment, please submit your code and writeup. 
+Mark which sections of the code are for which questions by using different files or comments in the file. 
+For this assignment, your code does not need to check for invalid input. 
+For this assignment, you are allowed to use pseudoinstructions. 
+
+\textbf{Due Date:}
+Monday, April 13th at 1:00 pm. 
+
+For this assignment, you will be writing code in MIPS. 
+Unfortunately, most machines you interact with will use a different ISA than MIPS, which means that they will be unable to run MIPS code. 
+In order to test and debug your code, you will need to make use of a MIPS simulator. 
+Many MIPS simulators are available online. 
+If you have a preferred simulator, feel free to use it. 
+If not, we recommend the QtSPIM MIPS simulator. 
+
+\begin{questions}
+
+\question[15]
+\textbf{Procedure Calls.}
+\begin{parts}
+\part[3]
+Write assembly instructions for the callee setup and callee return of a function that uses only registers $\$a0$ through $\$a3$ as inputs and only registers $\$v0$ and $\$v1$ as outputs. 
+Explain why your code is correct. 
+
+\textbf{Answer:}
+Nothing speical needs to be done since $\$a0$ through $\$a3$ and $\$v0$ and $\$v1$ are calleer save. There is also no other functions called in my function so this is a leaf procedure.
+
+\part[3]
+Write assembly instructions for the callee setup and callee return of a function that uses only registers $\$a0$ through $\$a3$ as inputs and only registers $\$v0$ and $\$v1$ as outputs. 
+As part of its operation, the function makes one call to another function. 
+Explain why your code is correct. 
+
+\textbf{Answer:}
+Since we are calling a funciton inside our function. We need to store the $\$ra$ register value. We also need to store other values in the caller save registers if we need them. Thus, we need to open a new stack frame, call the function, and pop the stack frame.
+
+\part[2]
+What (if anything) changes in the previous part (b) if the call the function makes is a call to itself (a recursive call)?
+
+\textbf{Answer:}
+Nothing changes.
+
+\part[2]
+What (if anything) changes in the previous part (b) if the function makes multiple calls to other functions?
+
+\textbf{Answer:}
+Nothing changes.
+
+\part[3]
+Write assembly instructions for the callee setup and callee return of a function that uses registers $\$v0$ through $\$v1$, $\$a0$ through $\$a3$, $\$t0$ through $\$t7$, and $\$s0$ through $\$s7$ as inputs and outputs. 
+As part of its operation, the function makes one call to another function. 
+Explain why your code is correct. 
+
+\textbf{Answer:}
+The code is similar to part (b). Two additional sets of registers must be saved. The $\$t0$--$\$t7$ registers are caller-saved, so they are saved before the nested call and restored after, since the callee may clobber them. The $\$s0$--$\$s7$ registers are callee-saved, meaning this function is responsible for preserving them for its own caller. Together with $\$ra$ and $\$fp$, this requires 18 words or 72 bytes, so the stack frame is rounded up to 96 bytes.
+
+\part[2]
+What (if anything) changes in the previous part if the function does not make calls to any functions?
+\end{parts}
+
+\textbf{Answer:}
+The stack frame still needs to be created for the $s$ registers, but the $t$ registers don't need to be saved anymore because they are caller saved.
+
+\question[5]
+\textbf{Tail Recursion.}
+Explain the process for converting a tail recursive function into a non-recursive function. 
+Why does this work?
+
+\textbf{Answer:}
+A tail recursive function only returns the base case or the recursive call of itself. Since the variables at the end of the previous run ar still available and the recursive call is the last operation, the input variables are already obtainable and no operation after it need the data in its original state. Thus, a new stack frame is not needed. Instead of calling itself, we can replace the recursive call to jumping to the start of the function. 
+
+\question[10]
+\textbf{Jump Tables.} \\
+For testing this question, you might want to make your own jump table. 
+If you do this, you should put the table in the \texttt{.data} section of your code. 
+You can use the \texttt{la} pseudoinstruction (load address) to put the address of a label into a register. 
+\begin{parts}
+\part[2]
+Write assembly instructions that jump to a location in code specified by a jump table based on the value of a particular input. 
+Assume that the input is stored in register $\$s1$ and can contain values between 0 and 7 (inclusive). 
+Assume that the address of the jump table is stored in register $\$s0$ and contains pointers for values between 0 and 7 (inclusive). 
+
+\part[3]
+Write assembly instructions that jump to a location in code specified by a jump table based on the value of a particular input. 
+Assume that the input is stored in register $\$s1$ and can contain even values between 4 and 18 (inclusive). 
+Assume that the address of the jump table is stored in register $\$s0$ and contains pointers for even values between 4 and 18 (inclusive). 
+
+\part[3]
+Write assembly instructions that jump to a location in code specified by a jump table based on the value of a particular input. 
+Assume that the input is stored in register $\$s1$ and can contain even values between 4 and 18 (inclusive). 
+Assume that the address of the jump table is stored in register $\$s0$ and contains pointers for values between 0 and 7 (inclusive). 
+
+\part[2]
+Consider the following code: 
+\begin{verbatim}
+Add:       add $s0, $a0, $a1
+           j Next
+Increment: addi $s0, $a0, 1
+           j Next
+Doubling:  add $s0, $a0, $zero
+           j Cond
+Loop:      add $s0, $s0, $s0
+           slt $t0, $zero, $a1
+Cond:      bne $t0, $zero, Loop
+           j Next
+L6:        addi $a0, $zero, -1
+Next:
+\end{verbatim}
+This code performs 4 different operations: add, increment, double, and set to -1. 
+Show what a jump table would look like for this code. 
+You are allowed to use labels rather than addresses. 
+Assume that the values in the jump table start at 0 and increment by 1. 
+
+\begin{verbatim}
+.data
+jump_table: 
+    .word Add, Increment, Doubling, L6
+\end{verbatim}
+
+\end{parts}
+
+\question[10]
+\textbf{Assembly Representation.}
+Consider the following code:
+\begin{verbatim}
+              beq $t1, $s4, True 
+              sub $t8, $sp, $a0  
+              j Exit 
+    True:     add $v0, $s1, $t8  
+    Exit:
+\end{verbatim}
+Convert the code from assembly language to machine code. 
+Assume that the code starts at address 0x1000. 
+
+\begin{verbatim}
+// beq $t1, $s4, True 
+// opcode = 000100, $t1 = 9 = 01001, $s4 = 20 = 10100, True = 2 = 0000000000000010
+0b00010001001101000000000000000010 
+// sub $t8, $sp, $a0  
+// opcode = 000000, $sp = 29 = 11101, $a0 = 4 = 00100, $t8 = 24 = 11000, Funct = 100010
+0b00000011101001001100000000100010
+// j Exit
+// opcode = 000010, Exit = 0x1000 + 4*4 = 0x1010 = 0b0001000000010000
+0b00001000000000000000010000000100
+// add $v0, $s1, $t8
+// opcode=000000, rs=$s1=17=10001, rt=$t8=24=11000, rd=$v0=2=00010, shamt=00000, funct=100000
+0b00000010001110000001000000100000
+\end{verbatim}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,297 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  13 APR 2026 22:27
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/zzpdavid2/Documents/GitHub/csci-221/advanced_assembly/learning/Assembly-Advanced-A1.tex
+(/Users/zzpdavid2/Documents/GitHub/csci-221/advanced_assembly/learning/Assembly-Advanced-A1.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/exam/exam.cls
+Document Class: exam 2023/07/09 Version 2.704 by Philip Hirschhorn
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+\@extrawidth=\skip51
+\@rightmargin=\skip52
+\@extrahead=\skip53
+\@extrafoot=\skip54
+\run@exhd=\skip55
+\fp@exhd=\skip56
+\run@exft=\skip57
+\fp@exft=\skip58
+\covrun@exhd=\skip59
+\covfp@exhd=\skip60
+\covrun@exft=\skip61
+\covfp@exft=\skip62
+\c@num@coverpages=\count283
+\c@latest@ques=\count284
+\c@ques@end=\count285
+\c@last@object=\count286
+\c@incmp@ques=\count287
+\c@next@ques=\count288
+\c@next@page=\count289
+\c@tmp@hlfcntr=\count290
+\c@ifpos@cntr=\count291
+\c@question=\count292
+\c@partno=\count293
+\c@subpart=\count294
+\c@subsubpart=\count295
+\c@choice=\count296
+\c@numpoints=\count297
+\c@numbonuspoints=\count298
+\c@pointsof@thisquestion=\count299
+\c@bonuspointsof@thisquestion=\count300
+\c@numquestions=\count301
+\c@numparts=\count302
+\c@numsubparts=\count303
+\c@numsubsubparts=\count304
+\c@Curr@Page=\count305
+\c@@pagepoints=\count306
+\c@@pagebonuspoints=\count307
+\c@pageof@pagepoints=\count308
+\c@pageof@pagebonuspoints=\count309
+\c@latest@points=\count310
+\c@latest@bonuspoints=\count311
+\pageinfo@commands=\toks17
+\temp@toks=\toks18
+\pagepoint@commands=\toks19
+\point@toks=\toks20
+\c@ques@object=\count312
+\marginpointssep=\skip63
+\rightpointsmargin=\skip64
+\choice@toks=\toks21
+\answerlinelength=\skip65
+\answerskip=\skip66
+\answerclearance=\skip67
+\fillinlinelength=\skip68
+\linefillheight=\skip69
+\linefillthickness=\skip70
+\dottedlinefillheight=\skip71
+\gridsize=\skip72
+\gridlinewidth=\skip73
+\minboxheight=\skip74
+\c@@iterator=\count313
+\@cellwidth=\skip75
+\c@tbl@points=\count314
+\c@tbl@bonuspoints=\count315
+\c@pq@index=\count316
+\c@pq@index@pts=\count317
+\c@pq@index@bpts=\count318
+\c@num@cols=\count319
+\c@num@rows=\count320
+\c@current@row=\count321
+\c@cols@done=\count322
+\c@exam@saved@eqnum=\count323
+\exam@box=\box53
+\saved@totalleftmargin=\dimen149
+\@sollistdepth=\count324
+\exam@FrameRule=\dimen150
+\exam@FrameSep=\dimen151
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count325
+\Gm@cntv=\count326
+\c@Gm@tempcnt=\count327
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks23
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment') (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen160
+\Gin@req@width=\dimen161
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count328
+\lst@gtempboxa=\box54
+\lst@token=\toks24
+\lst@length=\count329
+\lst@currlwidth=\dimen162
+\lst@column=\count330
+\lst@pos=\count331
+\lst@lostspace=\dimen163
+\lst@width=\dimen164
+\lst@newlines=\count332
+\lst@lineno=\count333
+\lst@maxwidth=\dimen165
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count334
+\lst@skipnumbers=\count335
+\lst@framebox=\box55
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count336
+) (./Assembly-Advanced-A1.aux)
+\openout1 = `Assembly-Advanced-A1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-30.0pt
+* \headheight=15.0pt
+* \headsep=15.0pt
+* \topskip=10.0pt
+* \footskip=29.0pt
+* \marginparwidth=36.135pt
+* \marginparsep=5.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count337
+\scratchdimen=\dimen166
+\scratchbox=\box56
+\nofMPsegments=\count338
+\nofMParguments=\count339
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count340
+\MPscratchDim=\dimen167
+\MPnumerator=\count341
+\makeMPintoPDFobject=\count342
+\everyMPtoPDFconversion=\toks26
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+\c@lstlisting=\count343
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 44.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 44.
+ [1
+
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (4.76881pt too wide) in paragraph at lines 169--169
+ []\OT1/cmtt/m/n/10 // opcode = 000000, $sp = 29 = 11101, $a0 = 4 = 00100, $t8 = 24 = 11000, Funct = 100010[] 
+ []
+
+
+Overfull \hbox (36.26854pt too wide) in paragraph at lines 169--169
+ []\OT1/cmtt/m/n/10 // opcode=000000, rs=$s1=17=10001, rt=$t8=24=11000, rd=$v0=2=00010, shamt=00000, funct=100000[] 
+ []
+
+[3]
+This exam contains 4 questions with 10 parts, 0 subparts, and 0 subsubparts.
+(./Assembly-Advanced-A1.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 4469 strings out of 467525
+ 68024 string characters out of 5418982
+ 504798 words of memory out of 5000000
+ 33381 multiletter control sequences out of 15000+600000
+ 631232 words of font info for 52 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,10n,65p,559b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Assembly-Advanced-A1.pdf (3 pages, 93474 bytes).
+PDF statistics:
+ 44 PDF objects out of 1000 (max. 8388607)
+ 26 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
