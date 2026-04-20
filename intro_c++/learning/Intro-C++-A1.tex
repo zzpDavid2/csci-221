@@ -1,0 +1,191 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{C++ Intro Assignment}
+\runningheader{CSCI 221}{}{C++ Intro Assignment}
+
+
+\begin{document}
+\title{C++ Intro Assignment (Learning)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of C++ and receive feedback. 
+Point values are assigned so that you can differentiate between large and small mistakes, but this assignment does not affect your grade. 
+To submit your assignment, please submit your code, makefile, and writeup. 
+For full credit, your code should check for invalid input. 
+
+\textbf{Due Date:}
+Monday, April 20th at 1:00 pm. 
+
+\begin{questions}
+
+\question[5]
+\textbf{Hello World.}
+\begin{parts}
+\part[3]
+Just like in C, your first step is to write and compile a basic working program. 
+We will start with the Hello World program we used in the first lab. 
+The code is below as a reference. 
+\begin{verbatim}
+#include <stdio.h>
+
+int main (int argc, char *argv[]) {
+  printf(``Hello, World!'');
+  return 0;
+}
+\end{verbatim}
+Get this code to compile using a C++ compiler. 
+Make sure that your code is in a .cpp file rather than a .c file. 
+
+\part[2]
+Modify your code such that it uses a C++ style print statement rather than a C style print statement. 
+Ensure your resulting code is correct. 
+\end{parts}
+
+%\question[]
+%\textbf{Booleans.}
+
+\question[10]
+\textbf{Pointers.}
+For the following, make sure to use C++ style rather than C style. 
+\begin{parts}
+\part[2]
+Create a pointer to an integer. 
+Don't initialize it. 
+Write code that checks the value of that pointer correctly. 
+
+\part[2]
+Write code that allocates an integer and sets the pointer to point to that integer. 
+
+\part[2]
+Write code that deallocates the integer you just allocated. 
+
+\part[2]
+Write code that allocates an array of integers of length 17 and sets the pointer to point to that array. 
+
+\part[2]
+Write code that deallocates the integer array you just allocated. 
+
+\end{parts}
+
+\question[6]
+\textbf{Functions.}
+\begin{parts}
+\part[2]
+Write a function that takes a pointer to an integer and an integer and increments the value pointed to by the second value. 
+
+\part[2]
+Modify your function from the previous part to use C++ pass by reference semantics rather than a pointer. 
+
+\part[2]
+Modify your function so that if no value is passed in the second argument, it increments the first argument by one. 
+
+\end{parts}
+
+\question[5]
+\textbf{Namespaces.}
+\begin{parts}
+\part[3]
+Create a function \texttt{Update} inside the \texttt{Grading221} namespace that takes as input two doubles and returns a double. 
+The returned value should be the first value if the first is larger, or the average if the second is larger. 
+
+\part[2]
+Create two different variables named \texttt{band}. 
+One is used to refer to a ring-like object. 
+One is used to refer to a musical group. 
+Their types are unimportant, but your code should be able to access both variables inside the same scope. 
+To show this, create a function that uses both variables. 
+
+\end{parts}
+
+\question[6]
+\textbf{Strings and IO.}
+\begin{parts}
+\part[2]
+Write a function that asks the user for an integer value, increments it by one, then prints out the result. 
+
+\part[2]
+Modify the function from the previous part to take a string from \texttt{cin}, then explicitly convert it to an integer using \texttt{stoi}. 
+Similarly, explicitly convert the output from an integer to a string using \texttt{to\_string} before outputting it. 
+
+\part[2]
+Create another function that performs the same process, but this time uses the older string type conversion. 
+That is, explicitly convert the user input from a string to an integer using a \texttt{stringstream}.
+You will need to create a \texttt{stringstream} from the string, and then read out the integer like it was from \texttt{cin}. 
+Similarly, convert your output from an integer to a string using a \texttt{stringstream}. 
+You will need to have an empty \texttt{stringstream} read in your output and the call the \texttt{.str} function on the stream. 
+
+\end{parts}
+
+\question[28]
+\textbf{Objects.}
+\begin{parts}
+\part[2]
+Create a \texttt{CharacterCount} struct that contains a string and an array of integers. 
+
+\part[8]
+Write a function that takes as input a string and a pointer to a \texttt{CharacterCount}. 
+The function has no return value. 
+For each character in the string of the \texttt{CharacterCount}, the function should increment the integer in the same position by the number of times that character appears in the input string. 
+You can assume that the length of the array in the \texttt{CharacterCount} is the same as the length of the string in the \texttt{CharacterCount.} 
+For example, if a \texttt{CharacterCount} contains the string \texttt{"abcrst "}, then its array should have length 7. 
+We will assume the array contains all zeros. 
+If the function is passed the \texttt{CharacterCount} above and the string \texttt{"test string"}, after completion the CharacterCount array should contain
+\begin{verbatim}
+[0, 0, 0, 1, 2, 3, 1]
+\end{verbatim}
+because the character \texttt{t} appears three times in the string, \texttt{r}
+appears once, \texttt{s} appears twice, etc.
+
+\part[2]
+Modify your struct so that it is a class containing the same variables. 
+Don't add any methods yet. 
+Modify your function so that it works on the class. 
+
+\part[6]
+Modify your class so that its variables are private. 
+Create getter and setter methods to enable outside code to access them. 
+However, you should enforce the restriction of the data type on the setter methods. 
+In particular, when the string changes, you should allocate a new array of the appropriate length containing all zeros. 
+In the setter for the array, you should make sure that you only accept arrays of the appropriate length. 
+You should also make a function to set individual array values. 
+Consider overriding the [] operator to do this. 
+Modify your function to use these new methods. 
+
+\part[2]
+Create a constructor for your class that initializes all of the variables based on arguments containing the value to set them to. 
+
+\part[2]
+Create a default constructor for your class. 
+
+\part[2]
+Create a copy constructor for your class. 
+
+\part[2]
+Create a destructor for your class. 
+
+\part[2]
+If necessary, modify your code to ensure that all of your methods that should be constant are. 
+
+\end{parts}
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+
+\end{questions}
+
+\end{document}

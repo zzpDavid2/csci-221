@@ -7,15 +7,6 @@
 
 ## MIPS Assembly Conventions
 
-### Pseudoinstructions
-- **Evaluation assignments**: pseudoinstructions are **NOT allowed**.
-- **Learning assignments**: pseudoinstructions are allowed.
-- Real instructions only (no `li`, `la`, `move`, `blt`, `bgt`, `ble`, `bge`):
-  - Use `addiu $t0, $zero, imm` instead of `li`
-  - Use `lui` + `ori` for addresses instead of `la`
-  - Use `addu $t0, $t1, $zero` instead of `move`
-  - Use `slt` + `beq`/`bne` instead of `blt`/`bgt`
-
 ### Calling Convention
 - **Callee-saved** (save/restore if your function uses them): `$s0–$s7`, `$fp`, `$ra`
 - **Caller-saved** (save before `jal` if you need them after): `$t0–$t9`, `$a0–$a3`, `$v0–$v1`
