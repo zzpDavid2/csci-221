@@ -1,0 +1,133 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{C++ Intro Assignment}
+\runningheader{CSCI 221}{}{C++ Intro Assignment}
+
+
+\begin{document}
+\title{Inheritance, STL, Smart Pointers, and Generics Assignment (Evaluation)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of Inheritance, STL, Smart Pointers, and Generics. 
+Feel free to collaborate with others and use resources, but all code and writeups must be your own. 
+To submit your assignment, please submit your code, makefile, and writeup. 
+For full credit, your code should check for invalid input. 
+
+\textbf{Due Date:}
+Friday, May 1st at 1:00 pm. 
+
+\begin{questions}
+\question[20]
+\textbf{Vehicles.}
+This question relies on your Car class from the previous assignment. 
+\begin{parts}
+\part[8]
+Create a Bus class. 
+This class should inherit from the Car class. 
+In addition, a Bus should have three additional variables:
+a maximum number of passengers,
+a gas mileage penalty per passenger (one per bus, which does not depend on the passengers),
+and a vector of the stop numbers that passengers are getting off at (represented as unsigned integers). 
+Each element in the vector represents a single passenger getting off at that stop. 
+The Bus class should implement a \texttt{generate\_route} method that takes as input a starting stop, and returns an STL list of stops to go to. 
+The list of stops should be all of the unique elements in the passengers variable sorted in ascending order, but starting with the input starting stop and wrapping around to smaller stop numbers after the largest element. 
+In addition, the \texttt{move\_to}  method should be overridden to use extra gas based on the product of the current number of passengers and the mileage per passenger penalty. 
+
+\part[4]
+Create a MedicalCenter class. 
+This class should contain a data structure that lists the providers at the center and their roles, as well as another data structure that lists the patients at that center. 
+Providers should be represented by strings containing their name. 
+Roles should be represented by strings containing the name of the role. 
+Providers are allowed to have multiple roles. 
+You should choose sensible types for the MedicalCenter to use to represent providers and patients. 
+
+\part[4]
+Create an Ambulance Class. 
+This class should inherit functionality from both a Car and a MedicalCenter. 
+In addition, an ambulance should have three additional variables: 
+a maximum capacity of patients, 
+a maximum total capacity of patients and providers,
+and a gas mileage penalty per person (patient or provider). 
+The \texttt{move\_to} method should be overridden to use extra gas based on the product of the current capacity of the ambulance and the mileage per person penalty. 
+
+\part[4]
+Write a function that takes as input a vector of unique pointers to Cars and a point in two-dimensional space. 
+The function should return a vector containing a copy of each of the cars that can move to that space. 
+The input array and the Cars in it should not be modified. 
+The Cars in the output array should have the \texttt{move\_to}  method called on them prior to returning. 
+Your function should be able to handle instances of Cars, Buses, and Ambulances in the input vector. 
+Each should use the proper \texttt{move\_to}  method. 
+
+\end{parts}
+
+\question[30]
+\textbf{Binary Search Trees.}
+In this question, you will implement a generic binary search tree data structure. 
+A binary search tree contains nodes that store four items: a pointer to a generic data value, a pointer to the left child node, a pointer to the right child node, and a pointer to the parent node. 
+For this question, we will design a tree that does not allow duplicates. 
+
+Binary search trees are designed such all values in the left subtree of a node must be smaller than the value in the node, and all values in the right subtree of a node must be larger than the value in the node. 
+A subtree of a node is recursively defined as the tree consisting of the node and its subtrees, rooted at the associated child of that node. 
+That is, all nodes that can be reached by following the pointer to the left child of node A are in node A's subtree. 
+
+For this question, we will create a generic binary search tree template that can store any type that implements the appropriate operations. 
+\begin{parts}
+\part[7]
+Design a class to store a node in the binary search tree. 
+All of the pointers in a node should be implemented using smart pointers. 
+The pointer to the data should be a unique pointer. 
+The pointers to other nodes should be designed in a manner that allows proper memory management using the concepts we discussed in class. 
+Your class should have all of the standard functionality for classes. 
+
+\part[5]
+Design a class to represent a binary search tree. 
+This class should contain a pointer to the root node in the tree and the number of elements in the tree. 
+Remember to update the count in other functions as appropriate. 
+Your class should have all of the standard functionality for classes. 
+
+\part[3]
+Write a constructor that takes as input an array of values and creates a binary search tree containing those values. 
+You should insert elements in to the tree in the order they appear in the array. 
+You are allowed to add additional arguments to your function as necessary. 
+
+\part[3]
+Write a destructor for your binary search tree. 
+
+\part[5]
+Write a method that takes as input a value of the appropriate type and adds the value to the binary search tree. 
+You should follow the BST property to ensure that you add the new node to the right place in the tree. 
+This should not change any other part of the tree. 
+
+\part[7]
+Write a method that takes as input a value of the appropriate type and removes the value from the tree. 
+The method should modify the original tree, not create a copy. 
+The tree must be updated to maintain its structure. 
+If possible, the left child should be moved to the position occupied by the removed value. 
+%If possible the largest element in the subtree rooted at the left child should be moved to the position occupied by the removed value. 
+This may cause additional issues that need to be fixed. 
+The function should return the number of values removed (0 or 1). 
+Beware of memory leaks. 
+
+\end{parts}
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+
+\end{questions}
+
+\end{document}

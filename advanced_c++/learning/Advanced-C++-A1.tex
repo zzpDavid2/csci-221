@@ -1,0 +1,200 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{C++ Intro Assignment}
+\runningheader{CSCI 221}{}{C++ Intro Assignment}
+
+
+\begin{document}
+\title{Inheritance, STL, Smart Pointers, and Generics Assignment (Learning)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of Inheritance, STL, Smart Pointers, and Generics and receive feedback. 
+Point values are assigned so that you can differentiate between large and small mistakes, but this assignment does not affect your grade. 
+To submit your assignment, please submit your answers, code, and makefile. 
+For full credit, your code should check for invalid input. 
+
+\textbf{Due Date:}
+Monday, April 27th at 1:00 pm. 
+
+\begin{questions}
+
+\question[30]
+\textbf{Inheritance.}
+\begin{parts}
+\part[4]
+Create a Location class that contains an x coordinate, a y coordinate (both private doubles), and a name (a private heap-allocated string). 
+Ensure that your class implements standard functions as well as a print function that prints out the location and name. 
+
+\part[4]
+Create a Building class that publicly inherits from Location. 
+In addition to a Location's fields, a Building should have a floor area in square feet and a number of floors. 
+
+\part[2]
+Ensure that your Building class properly initiates its internal Location when it is constructed. 
+Make sure you are calling the constructor of the Location. 
+
+\part[2]
+Ensure that your Building class properly deallocates its internal Location when it is deallocated. 
+Make sure you are calling the destructor of the Location. 
+
+\part[1]
+Can you access the x and y coordinates of a Building inside its methods?
+
+\part[1]
+Make the x and y coordinates of a Location protected, rather than private. 
+Can you access the x and y coordinates of a Building inside its methods now?
+
+\part[2]
+Write a client function (it can be main) that creates a Building. 
+Can the client function access a Building's x and y coordinates?
+
+\part[4]
+Create an OfficeBuilding class that publicly inherits from Building. 
+In addition to a Building's fields, an OfficeBuilding should have a number of cubicles and a number of offices (both private integers). 
+
+\part[2]
+Modify your Building class so that it protectedly inherits from Location. 
+Can your client function access the getters and setters for a Building's x and y coordinates?
+
+\part[1]
+Can you access the getters and setters for an OfficeBuilding's x and y coordinates in its methods?
+
+\part[2]
+Modify your Building class so that it privately inherits from Location. 
+Can you access the getters and setters for an OfficeBuilding's x and y coordinates in its methods now?
+
+\part[2]
+Modify the print method of a Building to also print the building's area and number of floors. 
+
+\part[1]
+What does calling print on a Building do?
+
+\part[1]
+What does calling print on a *Location that points to a Building do?
+
+\part[1]
+Modify your Location function's print method to be virtual. 
+Now what does calling print on a *Location that points to a Building do?
+
+%Double inheritance
+\end{parts}
+
+%\question[10]
+%\textbf{Smart Pointers.}
+%For the following, make sure to use C++ style rather than C style. 
+%\begin{parts}
+%\part[2]
+%Create a pointer to an int. 
+%Don't initialize it. 
+%Write code that checks the value of that pointer correctly. 
+%
+%\part[2]
+%Write code that allocates an int and sets the pointer to point to that int. 
+%
+%\part[2]
+%Write code that deallocates the int you just allocated. 
+%
+%\part[2]
+%Write code that allocates an array of ints of length 17 and sets the pointer to point to that array. 
+%
+%\part[2]
+%Write code that deallocates the int array you just allocated. 
+%
+%\end{parts}
+
+\question[30]
+\textbf{STL and Smart Pointers.}
+\begin{parts}
+\part[10]
+Create a Tracer class with the following functionality:
+\begin{enumerate}
+\item A Tracer should contain an unsigned integer. 
+Our goal is for each Tracer's contained integer to be unique. 
+
+\item A default constructor. 
+This should set the Tracer's contained integer to $i$, where $i$ is the number of Tracers that exist at the time $i$ is created. 
+You should be able to do this by having a static unsigned integer in the class that is incremented when Tracers are created and decremented when Tracers are destroyed. 
+In addition, the default constructor should print out that a Tracer with ID $i$ has been created. 
+
+\item A copy constructor. 
+This should similarly create a Tracer with a new unique value using the static integer. 
+In addition, the copy constructor should print out that a Tracer with this ID was created by copying the previous Tracer with its ID. 
+
+\item A destructor. 
+In addition to managing the static integer, the destructor should print out that a Tracer with ID $i$ has been destroyed. 
+
+\item An = operator. 
+The = operator should not modify the stored integer, but it should print out that Tracer with its ID has been set equal to the Tracer with the other ID. 
+
+\item A $<$ operator. 
+The $<$ operator should compare the IDs of the Tracers. 
+\end{enumerate}
+
+\part[2]
+Create an array containing 16 Tracers. 
+How many times is each Tracer constructed?
+
+\part[2]
+Create an STL vector containing 16 Tracers. 
+How many times is each Tracer constructed?
+
+\part[2]
+Create an STL set containing 16 Tracers. 
+How many times is each Tracer constructed?
+
+\part[3]
+Run the STL sort algorithm on your vector of Tracers. 
+What happens during the algorithm?
+
+\part[3]
+Create another STL set containing 2 Tracers. 
+Run the STL set union algorithm on the two sets. 
+What happens during the algorithm?
+
+\part[3]
+Create an STL set containing 16 unique pointers to Tracers. 
+How many times is each Tracer constructed?
+
+\part[3]
+Create an STL set containing 16 shared pointers to Tracers. 
+How many times is each Tracer constructed?
+
+\part[2]
+Why doesn't it make sense to create an STL set containing 16 weak pointers to Tracers?
+\end{parts}
+
+\question[10]
+\textbf{Templates.}
+\begin{parts}
+\part[4]
+Write a template function called duplicate that returns a pointer to a heap-allocated object that is a copy of the object passed in. 
+You should make use of the copy constructor of that object. 
+
+\part[6]
+Create a CountedCopies class that contains an object and an unsigned integer that tracks how many copies of that object it is managing. 
+(This integer represents an abstract concept. The CountedCopies object should only store one copy of the internal object.)
+Your class should contain standard functionality. 
+In addition, it should contain the following methods:
+\begin{enumerate}
+\item A method that returns the number of managed copies available. 
+\item A method that adds a number of managed copies. 
+\item A method that removes a number of managed copies. 
+\item A method that if the internal integer is positive, decrements that integer by one and creates a copy of the internal object and returns a pointer to that copy. 
+If the internal integer is 0, it returns nullptr. 
+\end{enumerate}
+
+\end{parts}
+
+\end{questions}
+
+\end{document}

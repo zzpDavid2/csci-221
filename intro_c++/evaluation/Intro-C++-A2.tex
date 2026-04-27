@@ -1,0 +1,133 @@
+\documentclass{exam}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\pagestyle{headandfoot}
+\firstpageheader{CSCI 221}{}{C++ Intro Assignment}
+\runningheader{CSCI 221}{}{C++ Intro Assignment}
+
+
+\begin{document}
+\title{C++ Intro Assignment (Evaluation)}
+\author{CSCI 221: Computer Science Fundamentals 2}
+\date{Spring 2026}
+\maketitle
+
+
+This assignment is an opportunity to test your understanding of C++. 
+Feel free to collaborate with others and use resources, but all code and writeups must be your own. 
+To submit your assignment, please submit your code, makefile, and writeup. 
+For full credit, your code should check for invalid input. 
+
+\textbf{Due Date:}
+Friday, April 24th at 1:00 pm. 
+
+\begin{questions}
+
+\question[15]
+\textbf{Cars.}
+\begin{parts}
+\part[5]
+Write the code for a Car class. 
+It should represent car objects that move from location to location using fuel from their gas tank. 
+Cars should have variables representing their position in a two-dimensional space, their fuel efficiency in miles per gallon, the size of their fuel tank, and how much fuel they currently have. 
+Cars should also have a method \texttt{move\_to} that tries to move to new coordinates. 
+If the car has enough fuel to drive to the new coordinates in a straight line, it does so and returns true. 
+If not, the car does not move and returns false. 
+
+\part[3]
+Write a function that given an array of Cars and a point in two-dimensional space, returns an array containing a copy of each of the cars that can move to that space. 
+The input array and the Cars in it should not be modified. 
+The Cars in the output array should have the \texttt{move\_to} method called on them prior to returning. 
+Make sure you are also returning the length of the output array. 
+
+\part[2]
+Write the code for a GasStation class. 
+It should contain a location and a price in dollars per gallon for refueling cars.
+
+\part[5]
+Write a modified version of your function for moving an array of cars that also takes an array of GasStations. 
+Cars that cannot directly move to the target location should check to see if they can move to the target point using the GasStations. 
+If this is possible, they should be added to the output list as if they move there using that path. 
+For simplicity, assume that the array of GasStations is sorted in ascending order of proximity to the target point and that traveling to a GasStation that is further away cannot help a Car reach the target point. 
+In addition to the list of Cars being output, you should output a list of the costs for each car to fill up its tank on the route to the location. 
+(This is zero for the cars that do not need to go to a GasStation.)
+
+\end{parts}
+
+\question[25]
+\textbf{SortedLists.}
+Write the code for a SortedList class. 
+This class should contain a linked list of strings in ascending sorted order. 
+There are two possible ways the list can be sorted:
+\begin{enumerate}
+\item By string length. 
+\item By individual characters. 
+Starting with the first, one character from each string is compared using the numeric value of the ASCII encoding. 
+If the strings have the same character, compare them on the next. 
+\end{enumerate}
+Ties can be broken in any order. 
+
+Your class should have the following functionality. 
+\begin{parts}
+\part[1]
+The ability to create new instances of the class that represent empty lists. 
+
+\part[1]
+The ability to create (deep) copies of a SortedList. 
+
+\part[1]
+The ability to create new instances of the class that specify which sorting method to use. 
+
+\part[3]
+A method to add elements to the list in sorted order. 
+
+\part[3]
+A method to remove all instances of an element from the list. 
+
+\part[1]
+A method to remove all values from the list. 
+
+\part[1]
+A method that returns whether or not the list is currently sorted by string length. 
+
+\part[1]
+A method that returns whether or not the list is currently sorted by individual characters. 
+
+\part[1]
+A method that returns the length of the list. 
+
+\part[2]
+A method that returns an array containing the values in the list in current sorted order. 
+
+\part[2]
+A method that returns the value in the $i$th position in current sorted order. 
+
+\part[3]
+A method that changes the list to be sorted by string length. 
+
+\part[3]
+A method that changes the list to be sorted by individual characters. 
+
+\part[1]
+The class should not cause any memory leaks. 
+
+\part[1]
+The class should have functions properly marked as constant. 
+\end{parts}
+
+\question[10]
+\textbf{Writeup.}
+In addition to your code, you should submit a brief (~1-2 pages) writeup that describes the state of your code. 
+You should discuss what is working, what is not, and any known errors. 
+In this discussion, you should reference the tests you did and how they support your claims. 
+You will need to provide a brief description of your tests for you to reference. 
+Your writeup should be in a separate .txt or .pdf file. 
+
+\end{questions}
+
+\end{document}
